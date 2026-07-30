@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f3ef" />
+    <meta
+      name="description"
+      content="Portafolio de Juan Antonio Ruiz Zavala, Ingeniero de Software y Automatización con experiencia en desarrollo web, ERP, automatización con IA y optimización de procesos."
+    />
+    <meta name="author" content="Juan Antonio Ruiz Zavala" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:title" content="Juan Antonio Ruiz Zavala — Ingeniero de Software y Automatización" />
+    <meta
+      property="og:description"
+      content="Ingeniería de software, automatización con IA y optimización de procesos."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Juan Antonio Ruiz Zavala — Ingeniero de Software y Automatización" />
+    <meta
+      name="twitter:description"
+      content="Ingeniería de software, automatización con IA y optimización de procesos."
+    />
+    <link rel="icon" href="/portafolio/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/portafolio/css/styles.css" />
+    <title>Juan Antonio Ruiz Zavala — Ingeniero de Software y Automatización</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header" aria-label="Cabecera del sitio">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true">JARZ</span>
+        <span id="brand-role" class="brand-role"></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span>Menú</span>
+        <span class="nav-toggle-mark" aria-hidden="true"></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
+        <a href="#perfil">Perfil</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#formacion">Formación</a>
+        <a class="nav-contact" href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <section id="inicio" class="hero" aria-labelledby="hero-title">
+        <div class="hero-index" aria-hidden="true">
+          <span>Portafolio</span>
+          <span id="hero-location"></span>
+        </div>
+        <div class="hero-content">
+          <p id="hero-role" class="hero-role"></p>
+          <h1 id="hero-title"></h1>
+          <p id="hero-value" class="hero-value"></p>
+          <div class="hero-actions" id="hero-actions"></div>
+        </div>
+        <div class="route-map">
+          <ul id="route-areas" class="visually-hidden" aria-label="Áreas de experiencia conectadas"></ul>
+          <div id="route-visual" class="route-visual" aria-hidden="true">
+            <svg
+              class="route-line"
+              viewBox="0 0 920 120"
+              preserveAspectRatio="none"
+              shape-rendering="geometricPrecision"
+            >
+              <path
+                pathLength="1200"
+                vector-effect="non-scaling-stroke"
+                d="M8 72 H96 L148 22 H262 L318 22 L382 52 H446 L502 96 H518 H606 L664 34 H778 H834 L874 72 H912"
+              />
+              <path
+                pathLength="1200"
+                vector-effect="non-scaling-stroke"
+                opacity="0.22"
+                d="M318 22 L366 8 H486 L532 38 H622 L664 34 M382 52 L426 78 H470 L502 96"
+              />
+              <g fill="var(--paper)" stroke="var(--blue)" stroke-width="2">
+                <rect x="375" y="45" width="14" height="14" vector-effect="non-scaling-stroke" />
+                <rect x="599" y="89" width="14" height="14" vector-effect="non-scaling-stroke" />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <a class="scroll-cue" href="#perfil">
+          <span>Explorar perfil</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </section>
+
+      <section id="perfil" class="section section-profile" aria-labelledby="profile-title">
+        <header class="section-heading">
+          <p class="section-kicker">Enfoque profesional</p>
+          <h2 id="profile-title">Tecnología conectada con resultados operativos.</h2>
+        </header>
+        <div class="profile-grid">
+          <p id="profile-summary" class="profile-summary"></p>
+          <div id="profile-highlights" class="impact-ledger" aria-label="Resultados destacados"></div>
+        </div>
+      </section>
+
+      <section id="experiencia" class="section section-dark" aria-labelledby="experience-title">
+        <header class="section-heading section-heading-dark section-heading-simple">
+          <h2 id="experience-title">Experiencia profesional</h2>
+        </header>
+        <div id="experience-list" class="experience-list"></div>
+      </section>
+
+      <section id="capacidades" class="section" aria-labelledby="skills-title">
+        <header class="section-heading">
+          <p class="section-kicker">Capacidades</p>
+          <h2 id="skills-title">De la ingeniería a la operación.</h2>
+        </header>
+        <div id="skills-list" class="skills-index"></div>
+      </section>
+
+      <section id="proyectos" class="section section-projects" aria-labelledby="projects-title">
+        <header class="section-heading section-heading-simple">
+          <h2 id="projects-title">Proyectos relevantes</h2>
+        </header>
+        <div id="projects-list" class="projects-list"></div>
+      </section>
+
+      <section id="formacion" class="section section-credentials" aria-labelledby="education-title">
+        <div>
+          <header class="section-heading section-heading-compact">
+            <h2 id="education-title">Formación</h2>
+          </header>
+          <div id="education-list" class="credential-list"></div>
+        </div>
+        <div>
+          <header class="section-heading section-heading-compact">
+            <h2 id="languages-title">Idiomas</h2>
+          </header>
+          <div id="languages-list" class="language-list" aria-labelledby="languages-title"></div>
+        </div>
+      </section>
+
+      <section id="contacto" class="contact-section" aria-labelledby="contact-title">
+        <div class="contact-copy">
+          <p class="section-kicker">Contacto directo</p>
+          <h2 id="contact-title">¿Hay un reto que podamos resolver juntos?</h2>
+          <p id="contact-summary"></p>
+        </div>
+        <div id="contact-actions" class="contact-actions"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><span id="footer-name"></span> <span id="current-year"></span></p>
+      <a href="#inicio">Volver al inicio ↑</a>
+    </footer>
+
+    <noscript>
+      <p class="noscript-message">
+        Este portafolio necesita JavaScript para mostrar su contenido. También puedes
+        <a href="/portafolio/Juan_Antonio_Ruiz_Zavala_CV_Software_Automation_ES.docx" download>descargar el CV</a>.
+      </p>
+    </noscript>
+
+    <script is:inline src="/portafolio/js/portfolio-data.js"></script>
+    <script is:inline src="/portafolio/js/app.js"></script>
+  </body>
+</html>

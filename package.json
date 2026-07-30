@@ -1,0 +1,21 @@
+{
+  "name": "juan-antonio-ruiz-zavala-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dependency-free professional portfolio for Juan Antonio Ruiz Zavala",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "node --test",
+    "check": "node scripts/validate.mjs && node --check public/portafolio/js/portfolio-data.js && node --check public/portafolio/js/app.js && npm test"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "devDependencies": {
+    "astro": "^7.1.6",
+    "happy-dom": "20.11.1"
+  }
+}

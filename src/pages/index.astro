@@ -1,0 +1,389 @@
+{/*
+  DIRECTION CONTRACT — construction page (route /)
+  THESIS: A machine waking up. The site presents itself as firmware mid-boot: honest about being unfinished, confident about what is coming.
+  OWN-WORLD: Devkit console aesthetic — rails, calibration ticks, boot log. Not a generic "coming soon"; a bench instrument that belongs to an engineer.
+  STORY: The visitor interrupts a boot sequence. The system self-reports, calibrates, and delivers one verdict: "El mundo aún no está listo para esto." The only action offered is entering the finished portfolio.
+  FIRST VIEWPORT: Boot log, oversized verdict, and the "Abrir portafolio" link are all visible without scrolling on any viewport.
+  FORM: Full-viewport grid with asymmetric rails. Deep indigo/graphite ground, ice-white type, acid chartreuse for system states, hot coral for warnings. One staged boot motion, removed under prefers-reduced-motion.
+*/}
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d1022" />
+    <meta
+      name="description"
+      content="Sitio en construcción. El portafolio de Juan Antonio Ruiz Zavala está disponible mientras el resto del sistema termina de arrancar."
+    />
+    <meta name="author" content="Juan Antonio Ruiz Zavala" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="/portafolio/assets/favicon.svg" type="image/svg+xml" />
+    <title>En construcción — Juan Antonio Ruiz Zavala</title>
+    <style>
+      :root {
+        --indigo: #0d1022;
+        --graphite: #171b2e;
+        --rail: #262c45;
+        --chartreuse: #c8f542;
+        --coral: #ff5d4d;
+        --ice: #eef3f7;
+        --ice-dim: #9aa6c0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        min-height: 100svh;
+        background: var(--indigo);
+        color: var(--ice);
+        font-family: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+        display: grid;
+        grid-template-columns: 3.5rem 1fr 4.5rem;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--chartreuse);
+        outline-offset: 4px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 0.5rem;
+        top: -4rem;
+        z-index: 10;
+        background: var(--chartreuse);
+        color: var(--indigo);
+        font-weight: 700;
+        padding: 0.6rem 1rem;
+        text-decoration: none;
+        transition: top 120ms ease-out;
+      }
+
+      .skip-link:focus-visible {
+        top: 0.5rem;
+      }
+
+      /* ---- rails ---------------------------------------------------- */
+
+      .rail {
+        border-color: var(--rail);
+        border-style: solid;
+        color: var(--ice-dim);
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .rail-top {
+        grid-column: 1 / -1;
+        border-width: 0 0 1px;
+        padding: 0.8rem 1rem;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .rail-left {
+        grid-column: 1;
+        grid-row: 2;
+        border-width: 0 1px 0 0;
+        flex-direction: column;
+        padding: 1.25rem 0;
+      }
+
+      .rail-right {
+        grid-column: 3;
+        grid-row: 2;
+        border-width: 0 0 0 1px;
+        flex-direction: column;
+        padding: 1.25rem 0;
+      }
+
+      .rail-bottom {
+        grid-column: 1 / -1;
+        border-width: 1px 0 0;
+        padding: 0.7rem 1rem;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .rail-vertical {
+        writing-mode: vertical-rl;
+      }
+
+      .status-dot {
+        display: inline-block;
+        width: 0.55rem;
+        height: 0.55rem;
+        margin-right: 0.45rem;
+        vertical-align: baseline;
+      }
+
+      .status-dot-ok {
+        background: var(--chartreuse);
+      }
+
+      .status-dot-warn {
+        background: var(--coral);
+      }
+
+      .ticks {
+        width: 1.4rem;
+        height: 9rem;
+        background: repeating-linear-gradient(
+          to bottom,
+          var(--rail) 0,
+          var(--rail) 1px,
+          transparent 1px,
+          transparent 12px
+        );
+      }
+
+      .ticks-short {
+        height: 5rem;
+      }
+
+      /* ---- main stage ------------------------------------------------ */
+
+      .stage {
+        grid-column: 2;
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(1.25rem, 3.5vh, 2.5rem);
+        padding: clamp(1.25rem, 4vw, 3.5rem);
+        min-width: 0;
+      }
+
+      .boot-log {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: var(--ice-dim);
+        font-size: clamp(0.7rem, 1.6vw, 0.8rem);
+        line-height: 1.9;
+      }
+
+      .boot-log strong {
+        color: var(--chartreuse);
+        font-weight: 700;
+      }
+
+      .boot-log .warn {
+        color: var(--coral);
+      }
+
+      .verdict {
+        margin: 0;
+        font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.1rem, 8.5vw, 5.5rem);
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        max-width: 14ch;
+      }
+
+      .verdict .mark {
+        color: var(--chartreuse);
+      }
+
+      .subline {
+        margin: 0;
+        color: var(--ice-dim);
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        line-height: 1.7;
+        max-width: 52ch;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        align-self: flex-start;
+        background: var(--chartreuse);
+        color: var(--indigo);
+        font-weight: 700;
+        font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1rem 1.6rem;
+        border: 2px solid var(--chartreuse);
+      }
+
+      .cta:hover,
+      .cta:focus-visible {
+        background: var(--indigo);
+        color: var(--chartreuse);
+      }
+
+      .cta-arrow {
+        font-weight: 400;
+      }
+
+      /* ---- calibration marks ------------------------------------------ */
+
+      .calibration {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        color: var(--ice-dim);
+        font-size: 0.65rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .calibration::before,
+      .calibration::after {
+        content: "";
+        width: 1.1rem;
+        height: 1.1rem;
+        border: 1px solid var(--coral);
+      }
+
+      /* ---- boot motion ------------------------------------------------- */
+
+      @media (prefers-reduced-motion: no-preference) {
+        .boot-item {
+          opacity: 0;
+          transform: translateY(0.5rem);
+          animation: boot-line 480ms ease-out forwards;
+        }
+
+        .boot-item:nth-child(1) { animation-delay: 120ms; }
+        .boot-item:nth-child(2) { animation-delay: 420ms; }
+        .boot-item:nth-child(3) { animation-delay: 720ms; }
+
+        .verdict {
+          opacity: 0;
+          transform: translateY(1.25rem);
+          animation: boot-line 640ms ease-out 1050ms forwards;
+        }
+
+        .subline,
+        .cta {
+          opacity: 0;
+          animation: boot-fade 520ms ease-out 1500ms forwards;
+        }
+
+        .status-dot-ok {
+          animation: boot-blink 900ms steps(2, start) 120ms 2;
+        }
+
+        @keyframes boot-line {
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
+
+        @keyframes boot-fade {
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes boot-blink {
+          50% {
+            opacity: 0.15;
+          }
+        }
+      }
+
+      /* ---- small viewports --------------------------------------------- */
+
+      @media (max-width: 40rem) {
+        body {
+          grid-template-columns: 2rem 1fr;
+        }
+
+        .rail-right {
+          display: none;
+        }
+
+        .rail-left {
+          grid-column: 1;
+        }
+
+        .stage {
+          grid-column: 2;
+          padding: 1.25rem;
+        }
+
+        .rail-top .rail-meta,
+        .rail-bottom .rail-meta {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="rail rail-top" aria-label="Estado del sistema">
+      <span><span class="status-dot status-dot-ok" aria-hidden="true"></span>Núcleo en línea</span>
+      <span class="rail-meta">DEVKIT/JARZ-01</span>
+      <span class="rail-meta">REV 2026.07</span>
+      <span><span class="status-dot status-dot-warn" aria-hidden="true"></span>Sitio en construcción</span>
+    </header>
+
+    <div class="rail rail-left" aria-hidden="true">
+      <span class="rail-vertical">Calibración de módulos</span>
+      <span class="ticks"></span>
+      <span class="rail-vertical">CH-01 / BUS-A</span>
+    </div>
+
+    <div class="rail rail-right" aria-hidden="true">
+      <span class="rail-vertical">0x0000: arranque</span>
+      <span class="ticks ticks-short"></span>
+      <span class="rail-vertical">0x2F00: portafolio</span>
+    </div>
+
+    <main id="contenido" class="stage">
+      <ul class="boot-log">
+        <li class="boot-item">[&nbsp;&nbsp;OK&nbsp;&nbsp;] <strong>Núcleo cargado</strong>: identidad verificada</li>
+        <li class="boot-item">[&nbsp;&nbsp;OK&nbsp;&nbsp;] <strong>Módulo /portafolio operativo</strong>: compilado y servido</li>
+        <li class="boot-item"><span class="warn">[ ESPERA ] Resto del sistema aún en ensamblaje…</span></li>
+      </ul>
+
+      <h1 class="verdict">El mundo aún no está listo para esto<span class="mark">.</span></h1>
+
+      <p class="subline">
+        La consola sigue arrancando. Mientras tanto, el módulo que sí terminó de cargar (el
+        portafolio profesional) está disponible y en operación.
+      </p>
+
+      <a class="cta" href="/portafolio/">
+        Abrir portafolio
+        <span class="cta-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <p class="calibration">Marca de calibración: ejes alineados</p>
+    </main>
+
+    <footer class="rail rail-bottom" aria-label="Información de compilación">
+      <span>Juan Antonio Ruiz Zavala</span>
+      <span class="rail-meta">Salida estática: Astro</span>
+      <span class="rail-meta">es-MX</span>
+    </footer>
+  </body>
+</html>

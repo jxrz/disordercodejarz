@@ -1,0 +1,15 @@
+# Dependencies and Astro build artifacts
+node_modules/
+dist/
+.astro/
+
+# Local tool caches and environment files
+.atl/
+.env
+.env.*
+logs/
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
