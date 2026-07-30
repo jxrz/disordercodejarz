@@ -11,11 +11,11 @@
     "check": "node scripts/validate.mjs && node --check public/portafolio/js/portfolio-data.js && node --check public/portafolio/js/app.js && npm test"
   },
   "engines": {
-    "node": ">=20.0.0",
+    "node": "^20.3.0 || >=22.0.0",
     "npm": ">=10.0.0"
   },
   "devDependencies": {
-    "astro": "^7.1.6",
+    "astro": "5.16.0",
     "happy-dom": "20.11.1"
   }
 }

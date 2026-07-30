@@ -9,7 +9,7 @@ const dist = resolve(root, "dist");
 // Build first so every check below runs against the actual shipped output.
 // Invoke Astro's bin through the current Node executable: spawning npx.cmd is
 // blocked on Windows (EINVAL) by Node's batch-file mitigation.
-const astroBin = resolve(root, "node_modules/astro/bin/astro.mjs");
+const astroBin = resolve(root, "node_modules/astro/astro.js");
 const build = spawnSync(process.execPath, [astroBin, "build"], {
   cwd: root,
   stdio: "inherit"
