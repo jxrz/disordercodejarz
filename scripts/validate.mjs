@@ -25,7 +25,7 @@ const requiredFiles = [
   "public/portafolio/css/styles.css",
   "public/portafolio/js/portfolio-data.js",
   "public/portafolio/js/app.js",
-  "public/portafolio/assets/favicon.svg",
+  "public/disroderjarz.png",
   "public/portafolio/Juan_Antonio_Ruiz_Zavala_CV_Software_Automation_ES.docx",
   "dist/index.html",
   "dist/portafolio/index.html"
@@ -55,6 +55,15 @@ const metaContent = (document, attribute, value) => {
     .find((meta) => new RegExp(`\\b${attribute}="${value}"`).test(meta));
   return tag?.match(/\bcontent="([^"]*)"/)?.[1];
 };
+const hasPngFavicon = (document) =>
+  [...document.matchAll(/<link\b[^>]*>/gi)].some((match) => {
+    const tag = match[0];
+    return (
+      /\brel=(['"])icon\1/i.test(tag) &&
+      /\bhref=(['"])\/disroderjarz\.png\1/i.test(tag) &&
+      /\btype=(['"])image\/png\1/i.test(tag)
+    );
+  });
 
 requiredFiles.forEach((path) => assert(existsSync(resolve(root, path)), `Missing required file: ${path}`));
 
@@ -83,9 +92,11 @@ const assertAnchors = (document, pageLabel) => {
 const rootHtml = readFileSync(resolve(dist, "index.html"), "utf8");
 assert(rootHtml.includes("El mundo aún no está listo para esto"), "Root page must show the construction verdict");
 assert(rootHtml.includes('href="/portafolio/"'), "Root page must link to /portafolio/");
+assert(hasPngFavicon(rootHtml), "Root page must include the PNG favicon contract");
 assertAnchors(rootHtml, "dist/index.html");
 
 const html = readFileSync(resolve(dist, "portafolio/index.html"), "utf8");
+assert(hasPngFavicon(html), "Portfolio page must include the PNG favicon contract");
 const internalLinks = assertAnchors(html, "dist/portafolio/index.html");
 
 const dataScriptIndex = html.indexOf('src="/portafolio/js/portfolio-data.js"');

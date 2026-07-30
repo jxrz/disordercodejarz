@@ -17,6 +17,14 @@ const findByText = (rootNode, selector, expected) =>
 
 const sectionByHeading = (document, heading) => findByText(document, "h2", heading)?.closest("section");
 
+const assertPngFavicon = (page, pagePath) => {
+  const favicon = new Window().document;
+  favicon.write(page);
+  const icon = favicon.querySelector('link[rel="icon"][href="/disroderjarz.png"][type="image/png"]');
+  assert.ok(icon, `${pagePath} must include the PNG favicon contract`);
+  favicon.defaultView.close();
+};
+
 const render = async (overrides = {}, width = 1280) => {
   const window = new Window({ url: "https://portfolio.test/portafolio/", width, height: 900 });
   window.document.write(html);
@@ -230,7 +238,9 @@ test("serves the construction page at the root and the portfolio at /portafolio/
   const rootPage = readFileSync(rootPagePath, "utf8");
   assert.match(rootPage, /El mundo aún no está listo para esto/);
   assert.match(rootPage, /href="\/portafolio\/"/);
+  assertPngFavicon(rootPage, "dist/index.html");
 
   const portfolioPage = readFileSync(portfolioPagePath, "utf8");
   assert.match(portfolioPage, /Juan Antonio Ruiz Zavala — Ingeniero de Software y Automatización/);
+  assertPngFavicon(portfolioPage, "dist/portafolio/index.html");
 });

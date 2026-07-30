@@ -86,7 +86,7 @@ Keep the existing filename or update `person.cvPath`, the download link in the `
 | `public/portafolio/css/styles.css` | Visual system, responsive layout, accessibility, print, and motion |
 | `public/portafolio/js/portfolio-data.js` | Source of truth for factual portfolio content and metadata values |
 | `public/portafolio/js/app.js` | DOM rendering and navigation behavior |
-| `public/portafolio/assets/favicon.svg` | Lightweight local favicon |
+| `public/disroderjarz.png` | Shared favicon for both routes |
 | `public/portafolio/Juan_Antonio_Ruiz_Zavala_CV_Software_Automation_ES.docx` | Source-of-truth CV, served at `/portafolio/` |
 | `scripts/validate.mjs` | Builds the site, then runs structural, schema, reference, and metadata-parity checks against `dist/` |
 | `test/portfolio.behavior.test.mjs` | Deterministic Happy DOM rendering and interaction contracts, plus built-output smoke test |
